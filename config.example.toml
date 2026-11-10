@@ -198,6 +198,28 @@ muapi_max_duration = 12
 muapi_poll_interval = 5
 muapi_run_timeout = 1800
 
+# useapi.net (third-party API) voice-over and AI background music, run on your
+# own connected accounts. Create an API token and connect the accounts at
+# https://useapi.net/docs/start-here/setup-useapi
+# When empty, the USEAPI_TOKEN environment variable is used.
+# - Kling TTS (voice names "useapi-kling:<speakerId>"): Kling does not charge
+#   credits for text-to-speech on any plan, including the free one. Scripts
+#   longer than one request are split at sentence ends and joined.
+# - Google Vids voices (voice names "useapi-vids:<Name>", e.g. "useapi-vids:Holt"):
+#   up to 2500 characters per request, each request uses one of the Google
+#   plan's monthly Google Vids speech uses.
+# - Google Flow Music background music (bgm_type "flowmusic"): one instrumental
+#   track per video from the music style prompt, using the Google Flow Music
+#   credits included in your Google AI plan.
+useapi_api_token = ""
+# Optional Kling emotion key; it must be one of the selected voice's emotions
+# (GET /v1/kling/tts/voices). Empty uses the voice's default delivery.
+useapi_kling_tts_emotion = ""
+# "lyria-3.5" (Google's current flagship) or "lyria-3-pro".
+useapi_flowmusic_model = "lyria-3.5"
+useapi_poll_interval = 10
+useapi_run_timeout = 1800
+
 # Metaso proxies the MiniMax H3 V2 asynchronous video API. Register and obtain
 # an independent API key through https://metaso.cn/minimax-h3/?s=MPT. Its mk-*
 # key belongs to a separate credential system and must not reuse the MiniMax LLM key.
@@ -839,6 +861,7 @@ open_task_folder_on_completion = true
 # custom_bgm_file = ""
 # sonilo_bgm_prompt = ""
 # elevenlabs_music_prompt = ""
+# flowmusic_prompt = ""
 # subtitle_enabled = true
 # subtitle_display_mode = "sentence" # "sentence" or "word_by_word"
 # subtitle_animation = "none"        # "none" or "pop_spring"
